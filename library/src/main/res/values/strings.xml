@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">GSwipeRefresh</string>
+    <string name="csr_text_state_normal">下拉可以刷新</string>
+    <string name="csr_text_state_ready">松开立即刷新 </string>
+    <string name="csr_text_state_refresh">正在刷新数据  ...   </string>
+    <string name="csr_text_state_complete">刷新完成 </string>
+    <string name="csr_text_last_refresh">最后更新:  </string>
+</resources>

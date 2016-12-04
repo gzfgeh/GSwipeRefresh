@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="bottom">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/refresh_header_image"/>
+
+        <RelativeLayout
+            android:id="@+id/default_header_content"
+            android:layout_width="fill_parent"
+            android:layout_height="150px"
+            android:layout_marginBottom="25px"
+            android:paddingLeft="25px">
+
+            <LinearLayout
+                android:id="@+id/default_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <!-- text -->
+
+                <TextView
+                    android:id="@+id/default_header_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#666666"
+                    android:textSize="35px" />
+
+                <!-- last update -->
+
+                <TextView
+                    android:id="@+id/default_header_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5px"
+                    android:textColor="#999999"
+                    android:textSize="30px"
+                    android:text="第一次下拉"/>
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/default_image_view">
+
+                <!-- arrow -->
+
+                <ImageView
+                    android:id="@+id/default_header_arrow"
+                    android:layout_width="80px"
+                    android:layout_height="80px"
+                    android:layout_gravity="center"
+                    android:src="@drawable/pulltorefresh" />
+
+                <!-- progressbar -->
+
+                <ProgressBar
+                    android:id="@+id/default_header_progressbar"
+                    style="@android:style/Widget.ProgressBar.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="gone" />
+            </FrameLayout>
+        </RelativeLayout>
+
+</LinearLayout>

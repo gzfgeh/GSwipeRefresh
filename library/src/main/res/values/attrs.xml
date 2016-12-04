@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SwipeRefreshLayout">
+        <attr name="enable_top_progress_bar" format="boolean" />
+        <attr name="refresh_mode" format="enum" >
+            <enum name="swipe_mode" value="1" />
+            <enum name="pull_mode" value="2" />
+        </attr>
+        <attr name="time_out_return_to_top" format="integer" />
+        <attr name="time_out_refresh_complete" format="integer" />
+        <attr name="return_to_top_duration" format="integer" />
+        <attr name="return_to_header_duration" format="integer" />
+        <attr name="keep_refresh_head" format="boolean" />
+    </declare-styleable>
+</resources>
