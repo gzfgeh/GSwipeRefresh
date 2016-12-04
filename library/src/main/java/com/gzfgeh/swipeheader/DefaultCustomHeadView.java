@@ -19,10 +19,6 @@ import java.util.Date;
 
 
 /**
- * Created by liu on 2014/9/15.
- */
-
-/**
  * The DefaultCustomHeadViewLayout is a refresh head view provided as default.
  * You can also make your own head view layout which must implement
  * CustomSwipeRefreshHeadview.CustomSwipeRefreshHeadLayout interface.
