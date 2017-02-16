@@ -135,8 +135,18 @@ public class SwipeRefreshLayout extends ViewGroup {
             // the target offset to 0
             // mCurrentTargetOffsetTop = 0;
             mInReturningAnimation = false;
+            if (animationEndListener != null && mCurrentTargetOffsetTop == 0){
+                animationEndListener.animationEnd();
+            }
         }
     };
+
+    private AnimationEndListener animationEndListener;
+    private boolean headStartMove = true;
+
+    public void setAnimationEndListener(AnimationEndListener animationEndListener) {
+        this.animationEndListener = animationEndListener;
+    }
 
     private boolean mInReturningAnimation;
     private int mTriggerOffset = 0;
@@ -786,10 +796,14 @@ public class SwipeRefreshLayout extends ViewGroup {
         switch (action) {
 
             case MotionEvent.ACTION_MOVE:
+
                 if (mDownEvent != null && !mInReturningAnimation) {
                     final float eventY = event.getY();
                     float yDiff = eventY - mDownEvent.getY();
-
+                    if (animationEndListener != null && headStartMove && yDiff > mTouchSlop) {
+                        animationEndListener.headStartMove();
+                        headStartMove = false;
+                    }
 
                     boolean isScrollUp = eventY - mPrevY > 0;
 
@@ -884,6 +898,7 @@ public class SwipeRefreshLayout extends ViewGroup {
 
                 break;
             case MotionEvent.ACTION_UP:
+                headStartMove = true;
                 //add mCurrentTargetOffsetTop == 0 fix pull down and then pull up then can not pull
                 if (mRefreshing || mCurrentTargetOffsetTop == 0)
                     break;
@@ -904,6 +919,7 @@ public class SwipeRefreshLayout extends ViewGroup {
                     mDownEvent.recycle();
                     mDownEvent = null;
                 }
+                headStartMove = true;
                 break;
         }
 
@@ -1162,5 +1178,10 @@ public class SwipeRefreshLayout extends ViewGroup {
         @Override
         public void onAnimationRepeat(Animation animation) {
         }
+    }
+
+    public interface AnimationEndListener{
+        void animationEnd();
+        void headStartMove();
     }
 }

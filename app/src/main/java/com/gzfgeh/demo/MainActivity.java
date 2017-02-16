@@ -8,11 +8,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.Toast;
 
 import com.gzfgeh.swipeheader.DefaultCustomHeadView;
 import com.gzfgeh.swipeheader.SwipeRefreshLayout;
 
-public class MainActivity extends AppCompatActivity implements android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener {
+public class MainActivity extends AppCompatActivity implements android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener, SwipeRefreshLayout.AnimationEndListener {
     private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements android.support.v
 
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe);
         swipeRefreshLayout.setOnRefreshListener(this);
+        swipeRefreshLayout.setAnimationEndListener(this);
     }
 
     @Override
@@ -56,5 +58,15 @@ public class MainActivity extends AppCompatActivity implements android.support.v
             }
         });
         return true;
+    }
+
+    @Override
+    public void animationEnd() {
+        Toast.makeText(this, "ddddd", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void headStartMove() {
+        Toast.makeText(this, "sssssss", Toast.LENGTH_SHORT).show();
     }
 }
