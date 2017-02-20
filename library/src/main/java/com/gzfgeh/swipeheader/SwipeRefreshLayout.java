@@ -898,6 +898,8 @@ public class SwipeRefreshLayout extends ViewGroup {
 
                 break;
             case MotionEvent.ACTION_UP:
+                if (animationEndListener != null && mCurrentTargetOffsetTop == 0)
+                    animationEndListener.animationEnd();
                 headStartMove = true;
                 //add mCurrentTargetOffsetTop == 0 fix pull down and then pull up then can not pull
                 if (mRefreshing || mCurrentTargetOffsetTop == 0)
