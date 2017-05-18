@@ -6,7 +6,8 @@
 3. 一般下拉头都用动画，所以要继承SwipeRefreshLayout.CustomSwipeRefreshHeadLayout，可以参考项目中的DefaultCustomHeadView
 4. 使用
 
-    Add it in your root build.gradle at the end of repositories: <br>  
-        maven { url "https://jitpack.io" } <br>  
-    Add the dependency  <br>  
-	    compile 'com.github.gzfgeh:GSwipeRefresh:v1.0.0' 
+
+	Add it in your root build.gradle at the end of repositories: <br>  
+        	maven { url "https://jitpack.io" } <br>  
+	Add the dependency  <br>  
+		compile 'com.github.gzfgeh:GSwipeRefresh:v1.0.3' 
