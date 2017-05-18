@@ -53,7 +53,7 @@ public class DefaultCustomHeadView extends LinearLayout implements SwipeRefreshL
         mMainTextView = (TextView) findViewById(R.id.default_header_textview);
         mSubTextView = (TextView) findViewById(R.id.default_header_time);
         mProgressBar = (ProgressBar) findViewById(R.id.default_header_progressbar);
-        mImageView.setVisibility(GONE);
+        findViewById(R.id.logo).setVisibility(GONE);
         updateData();
         setupAnimation();
     }
