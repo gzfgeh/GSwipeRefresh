@@ -1,10 +1,15 @@
 package com.gzfgeh.swipeheader;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Rect;
+import android.support.annotation.IdRes;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPropertyAnimatorCompat;
+import android.support.v4.view.ViewPropertyAnimatorListener;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -16,6 +21,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
 import android.view.animation.Transformation;
 import android.widget.AbsListView;
 
@@ -884,14 +890,14 @@ public class SwipeRefreshLayout extends ViewGroup {
                     handled = true;
                     if (curTargetTop >= mTargetOriginalTop && !isRefreshing()) {
                         setTargetOffsetTop((int) ((eventY - mPrevY) * mResistanceFactor), false);
-                        if (mHeadview instanceof DefaultCustomHeadView){
-                            ((DefaultCustomHeadView) mHeadview).setTrackViewProgress(yDiff/mHeadview.getHeight()/4);
-                        }
+//                        if (mHeadview instanceof DefaultCustomHeadView){
+//                            ((DefaultCustomHeadView) mHeadview).setTrackViewProgress(yDiff/mHeadview.getHeight()/4);
+//                        }
                     }else {
                         setTargetOffsetTop((int) ((eventY - mPrevY)), true);
-                        if (mHeadview instanceof DefaultCustomHeadView) {
-                            ((DefaultCustomHeadView) mHeadview).setTrackViewProgress(1.0f);
-                        }
+//                        if (mHeadview instanceof DefaultCustomHeadView) {
+//                            ((DefaultCustomHeadView) mHeadview).setTrackViewProgress(1.0f);
+//                        }
                     }
                     mPrevY = event.getY();
                 }
@@ -905,8 +911,6 @@ public class SwipeRefreshLayout extends ViewGroup {
                 if (mRefreshing || mCurrentTargetOffsetTop == 0)
                     break;
 
-                if (DEBUG)
-                    Log.d(TAG, "mymymy--" + mCurrentTargetOffsetTop + "------" + mTriggerOffset);
                 if (mCurrentTargetOffsetTop >= mTriggerOffset &&
                         refresshMode == REFRESH_MODE_PULL) {
                     startRefresh();
@@ -928,6 +932,18 @@ public class SwipeRefreshLayout extends ViewGroup {
         if (DEBUG)
             Log.d(TAG, "onTouchEvent() " + handled);
         return handled;
+    }
+
+    public void showHead(){
+        postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ensureTarget();
+                setTargetOffsetTop(mHeadview.getHeight(), true);
+                refresshMode = REFRESH_MODE_PULL;
+                startRefresh();
+            }
+        }, 500);
     }
 
     private void startRefresh() {

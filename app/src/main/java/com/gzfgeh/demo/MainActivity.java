@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements android.support.v
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe);
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setAnimationEndListener(this);
+        swipeRefreshLayout.showHead();
     }
 
     @Override
